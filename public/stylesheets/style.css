@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#sites label, #sites input {
+  display:inline-block;
+  vertical-align:baseline;
+  width:175px;
+}
+
+#sites label {
+
+}
+
+#sites input {
+  box-sizing:border-box;
+}

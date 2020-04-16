@@ -1,0 +1,20 @@
+{
+  "db":{
+    "host":"example.org",
+    "name":"realfind",
+    "password":"secret",
+    "user":"root",
+    "port":"3306"
+  },
+  "auth": {
+    "name":"w4rapp",
+    "pass":"AsrkSC699vFCYQqL"
+  },
+  "https": {
+    "keyPath":"",
+    "certPath":""
+  },
+  "host":"http://example.org/",
+  "port":3000,
+  "httpsPort":3443
+}

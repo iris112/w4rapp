@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  #sites
+    h1 Sites
+
+    h2 Create New
+    form(action='/sites/', method='post')
+      label(for='site-name') Name
+        input(type='text', name='name', id='site-name')
+      label(for='site-url') Main URL
+        input(type='text', name='main_url', id='site-url', placeholder='http://www.example.com/')
+      br
+      input(type='submit', value='Create')
+
+    h2 Convert between Integer and Account ID
+    label(for='convert-int') Integer
+      input(type='text', name='integer', id='convert-integer', placeholder='Integer')
+    label(for='convert-ID') Account ID
+      input(type='text', name='ID' id='convert-ID', placeholder='SA-0000-0000')
+
+    h2 Filter the Sites
+    form(action='/sites/', method='get')
+      label(for='site-name') Name
+        input(type='text', name='name', id='site-name')
+      label(for='site-url') Main URL
+        input(type='text', name='main_url', id='site-url', placeholder='http://www.example.com/')
+      label(for='site-account') Account ID
+        input(type='text', name='account' id='site-account', placeholder='SA-0000-0000')
+      br
+      input(type='submit', value='Filter')
+
+    h2 List of Sites
+    table
+      thead
+        tr
+          th Name
+          th Main URL
+          th Account ID
+      tbody
+        each site, i in sites
+          tr
+            td #{site.name}
+            td #{site.main_url}
+            td #{site.account}
+            td: a(href='/sites/' + site.id) view

@@ -1,0 +1,79 @@
+extends layout
+
+block content
+  a(href='/sites/') Sites
+
+  p Name: #{site.name}
+  p Main URL: #{site.main_url}
+  p Account ID: #{site.account}
+  p Created: #{site.created}
+
+  #urlBuilder
+    input#urlBase(placeholder='Base URL', value=site.main_url)
+    br
+    input#urlSource(placeholder='Source')
+    br
+    input#urlMedium(placeholder='Medium')
+    br
+    input#urlName(placeholder='Name')
+    br
+    span#url(style='display:inline-block;')
+
+  p
+
+  textarea(style='width:500px;height:230px;').
+    <script type="text/javascript">
+    var _rfq = _rfq || [];
+    (function() {
+        var url = '#{rfSrc}';
+        _rfq.push(['setSiteAccount', '#{site.account}']);
+        _rfq.push(['setTrackerUrl', url+'im.gif']);
+        _rfq.push(['trackPageview']);
+        // Push additional commands here. eg. _rfq.push(['enableLinkTracking']);
+        var rf = document.createElement('script');
+        rf.type = 'text/javascript';
+        rf.async = true;
+        rf.src = url+'rf.js';
+        var script = document.getElementsByTagName('script')[0];
+        script.parentNode.insertBefore(rf, script);
+    })();
+    </script>
+
+  script(src='https://code.jquery.com/jquery-2.1.0.min.js')
+  script.
+    jQuery(function($){
+      var url = $('#url');
+      var builder = $('#urlBuilder');
+      var base = $('#urlBase');
+      var src = $('#urlSource');
+      var mdm = $('#urlMedium');
+      var name = $('#urlName');
+
+      setInterval(function() {
+        var s = getUrl();
+
+        if (url.text() !== s) url.text(s);
+      }, 200);
+
+      function getUrl() {
+        var s = base.val();
+        var c = ~s.indexOf('?') ? '&' : '?';
+
+        if (src.val()) {
+          s += c + 'rf_src=' + src.val();
+          c = '&';
+        }
+
+        if (mdm.val()) {
+          s += c + 'rf_mdm=' + mdm.val();
+          c = '&';
+        }
+
+        if (name.val()) {
+          s += c + 'rf_nm=' + name.val();
+          c = '&';
+        }
+
+        return s;
+      }
+    });
